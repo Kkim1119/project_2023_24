@@ -1,13 +1,15 @@
 import * as React from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
+
+
 
 const MyApp = () => {
   const getData = () => {         //gets data from API on button click
-    alert("getting data now...")
-    const [data1, setData1] = useState(null); //data received is stored here
-
-    useEffect(() => {             //fetches info from API
-      fetch("API URL goes here", {
+    
+    const [data1, setData1] = useState(null); //data received is stored here         //fetches info from API
+    useEffect(() => { 
+      alert("getting data now...")   
+      fetch("localhost:8080/api/sixNumbers", {
         method: "GET",
         headers: {
          //I don't think we need any headers at the moment
@@ -34,7 +36,7 @@ const MyApp = () => {
     alert("sending data now...")
 
     const data2 = {
-      givenNumber: '42' //sending data manually for now
+      "givenNumber": 42 //sending data manually for now
     };
 
     const options = { 
@@ -45,7 +47,7 @@ const MyApp = () => {
       body: JSON.stringify(data2) //Change data2 content to string for JSON file
     };
 
-    fetch('api site URL goes here', options)  //actual POST call to API
+    fetch('localhost:8080/api/sixNumbers', options)  //actual POST call to API
       .then(response => response.json())
       .then(data => console.log(data))
       .catch(error => console.error(error));
